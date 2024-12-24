@@ -19,6 +19,11 @@ const promises = [
 
 // Add "Loading..." row initially
 const output = document.getElementById("output");
+const loding = document.createElement("tr");
+loding.innerHTML = `
+      <td>{Loading...}</td>
+`;
+output.appendChild(loding);
 
 // Use Promise.all to wait for all promises to resolve
 const startTime = performance.now();
