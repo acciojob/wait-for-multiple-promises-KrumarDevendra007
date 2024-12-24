@@ -1,55 +1,72 @@
 //your JS code here. If required.
 
-//funtion for time between 1 to 3
-
-const createPromise = (name) => {
-
-	const time = Math.random() * 2+1;
-	return new Promise((resolve) => {
-		setTimeout(() => resolve({name, time:time.ToFixed(3)}), time*1000);
-	});
-}
-
-// array of three promises
-const promises = [
-	createPromise("Promise 1"),
-	createPromise("Promise 2"),
-	createPromise("Promise 3")
-];
-
 // Add "Loading..." row initially
 const output = document.getElementById("output");
-const loding = document.createElement("tr");
-loding.innerHTML = `
-      <td>Loading...</td>
+// output.document.createElement("tr");
+output.innerHTML = `
+ <tr id="loding">
+   <td callspan="2">Loading...</td>
+ </tr>
 `;
-output.appendChild(loding);
 
-// Use Promise.all to wait for all promises to resolve
-const startTime = performance.now();
-promise.all(promises).then((results) => {
-	// Calculate total time taken
-	const totalTime = (performance.now() - startTime)/1000;
+// overall start time
+const overallStarttime = Date.now();
+// Promis 1
+Promise.all([
+	new Promise((resolve) => {
+		const startTiime = Date.now()
+		setTimeOut(() => {
+			const duration = Date.now-startTiime
+			resolve({name:"Promise1", time:duration})
+		}, 2000)
+	}),
 
-	// Remove the "Loading..." row
-	document.getElementById("loading-row").remove();
+	// Promis 2
+Promise.all([
+	new Promise((resolve) => {
+		const startTiime = Date.now()
+		setTimeOut(() => {
+			const duration = Date.now-startTiime
+			resolve({name:"Promise2", time:duration})
+		}, 1000)
+	}),
 
-	// Add rows for each promise
-	results.forEach((results) => {
-		const row = document.createElement("tr");
-		row.innerHTML = `
-		   <td>${result.name}</td>
-		   <td>${result.time}</td>
-		`;
-		output.appendChild(row);	
-
-		 // Add row for the total time
-		const totalRow = document.createElement("");
-		totalRow.innerHTML = `
-		<td>Total</td>
-		<td>${totalTime.toFixed(3)} s</td>
-		`;
-		output.appendChild(totalRow);
+	// Promis 3
+Promise.all([
+	new Promise((resolve) => {
+		const startTiime = Date.now()
+		setTimeOut(() => {
+			const duration = Date.now-startTiime
+			resolve({name:"Promise3", time:duration})
+		}, 3000)
 	})
+]).then((results) => {
+	const overallEndTime = Date.now()-overallStarttime
+	console.log(overallEndTime)
+	console.log(results)
+
+	output.innerHTML = ``;
+	results.forEach((result) => {
+		output.innerHTML += `
+		<tr>
+		<td>${result.name}</td>
+		<td>${result.time}</td>
+		</tr>
+		`
+	});
+
+	output.innerHTML = `
+	<tr>
+	<td><strong>Total</strong></td>
+	<td>${(overallStarttime/1000).toFixed(3)}</td>
+	</tr>
+	`;	
+}).catch((error) => {
+	console.log(error)
 })
+      
+
+
+
+
 
