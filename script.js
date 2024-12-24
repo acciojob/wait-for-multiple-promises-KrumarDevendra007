@@ -21,7 +21,7 @@ const promises = [
 const output = document.getElementById("output");
 const loding = document.createElement("tr");
 loding.innerHTML = `
-      <td>{Loading...}</td>
+      <td>${Loading...}</td>
 `;
 output.appendChild(loding);
 
