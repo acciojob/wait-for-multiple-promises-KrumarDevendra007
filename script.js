@@ -1,13 +1,19 @@
 window.onload = function () {
   const outputElement = document.getElementById("output");
 
-  // Insert the loading row
-  const loadingRow = document.createElement("tr");
-  const loadingCell = document.createElement("td");
-  loadingCell.setAttribute("colspan", "2");
-  loadingCell.textContent = "Loading...";
-  loadingRow.appendChild(loadingCell);
-  outputElement.appendChild(loadingRow);
+  // // Insert the loading row
+  // const loadingRow = document.createElement("tr");
+  // const loadingCell = document.createElement("td");
+  // loadingCell.setAttribute("colspan", "2");
+  // loadingCell.textContent = "Loading...";
+  // loadingRow.appendChild(loadingCell);
+  // outputElement.appendChild(loadingRow);
+
+	outputElement.innerHTML = `
+	<tr>
+	<td class="text-center" colspan = "2">Loading...</td>
+	</tr>
+	`;
 
   // Record the overall start time
   const startTime = Date.now();
